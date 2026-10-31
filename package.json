@@ -1,0 +1,17 @@
+{
+  "name": "stef000.dev",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal site and CV. Static, self-hosted.",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-footnote": "^4.0.0"
+  }
+}
