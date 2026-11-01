@@ -179,10 +179,20 @@ ${footer()}
     tx = Math.max(-mx, Math.min(mx, tx));
     ty = Math.max(-my, Math.min(my, ty));
   }
-  function setZoom(nz) {
-    z = Math.max(1, Math.min(4, nz));
-    if (z === 1) { tx = 0; ty = 0; }
-    clampPan(); apply();
+  function setZoom(nz, cx, cy) {
+    nz = Math.max(1, Math.min(4, nz));
+    if (nz === 1) { z = 1; tx = 0; ty = 0; apply(); return; }
+    if (cx == null) { z = nz; clampPan(); apply(); return; }
+    var r = stage.getBoundingClientRect();
+    var ox = cx - (r.left + r.width / 2);
+    var oy = cy - (r.top + r.height / 2);
+    var ix = (ox - tx) / z;
+    var iy = (oy - ty) / z;
+    z = nz;
+    tx = ox - ix * z;
+    ty = oy - iy * z;
+    clampPan();
+    apply();
   }
   function reset() { z = 1; tx = 0; ty = 0; apply(); }
 
@@ -240,12 +250,12 @@ ${footer()}
   img.addEventListener("click", function (e) {
     e.stopPropagation();
     if (moved) { moved = false; return; }
-    setZoom(z > 1 ? 1 : 2.5);
+    setZoom(z > 1 ? 1 : 2.5, e.clientX, e.clientY);
   });
   stage.addEventListener("wheel", function (e) {
     if (!lb.classList.contains("open")) return;
     e.preventDefault();
-    setZoom(z * (e.deltaY < 0 ? 1.12 : 1 / 1.12));
+    setZoom(z * (e.deltaY < 0 ? 1.12 : 1 / 1.12), e.clientX, e.clientY);
   }, { passive: false });
 
   img.addEventListener("pointerdown", function (e) {
