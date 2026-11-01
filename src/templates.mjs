@@ -43,9 +43,6 @@ const nav = (active) => `<header class="nav">
     <a href="/projects/"${active === "projects" ? ' class="is-active"' : ""}>Projects</a>
     <a href="/cv/"${active === "cv" ? ' class="is-active"' : ""}>CV</a>
     <a href="mailto:${site.email}">Contact</a>
-    <a class="login" href="/studio/" title="Studio">
-      ${icon("lock")}<span>Login</span>
-    </a>
   </nav>
 </header>`;
 
