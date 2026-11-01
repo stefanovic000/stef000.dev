@@ -17,6 +17,13 @@ export default {
   // Shown on the home page and on /projects. First two get the larger treatment.
   projects: [
     {
+      name: "ReverseReverb",
+      desc: "Turns a sound into a reversed reverb lead-in. Drop a file, shape the tail, export a WAV or drag it into FL Studio.",
+      tags: ["C++", "JUCE", "audio"],
+      href: "https://github.com/stefanovic000/ReverseReverb",
+      year: "2026",
+      image: "/assets/images/reversereverb.png"
+    },    {
       name: "goodsharing",
       desc: "Windows screen sharing over a self-hosted LiveKit SFU: WGC capture, hardware H.264, E2EE, a Qt Quick UI and a measurement harness.",
       tags: ["C++", "Qt", "WebRTC"],
@@ -57,7 +64,7 @@ export default {
     }
   ],
 
-  skills: ["C#", ".NET Framework", "WinForms", "C++", "Qt", "WebRTC", "Direct3D", "Blender", "RenderDoc", "Linux", "Node", "Git"],
+  skills: ["C#", ".NET Framework", "WinForms", "C++", "JUCE", "Qt", "WebRTC", "Direct3D", "Blender", "RenderDoc", "Linux", "Node", "Git"],
 
   // Add entries here and they appear on both the home page and /cv.
   // { role: "", company: "", period: "", note: "" }

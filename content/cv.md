@@ -20,9 +20,10 @@ I build desktop software in C# and C++, mostly tools that touch graphics, captur
 
 ## Skills
 
-C# · .NET Framework · WinForms · C++ · Qt · WebRTC · Direct3D / WGC · Blender · RenderDoc · Linux · Caddy · Node · Git
+C# · .NET Framework · WinForms · C++ · JUCE · Qt · WebRTC · Direct3D / WGC · Blender · RenderDoc · Linux · Caddy · Node · Git
 
 ## Selected work
 
+- **ReverseReverb** — [source](https://github.com/stefanovic000/ReverseReverb)
 - **goodsharing** — [source](https://github.com/stefanovic000/goodsharing)
 - **stef000.dev** — [source](https://github.com/stefanovic000/stef000.dev)
