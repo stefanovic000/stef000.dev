@@ -7,16 +7,15 @@ I build desktop software in C# and C++, mostly tools that touch graphics, captur
 **Independent projects** · 2025 — now
 
 - Built and shipped **goodsharing**, a Windows screen-sharing tool on a self-hosted LiveKit SFU: WGC capture, hardware H.264 encoding, end-to-end encryption, Qt Quick UI, and a measurement harness to prove the latency numbers.
+- Built **ReverseReverb**, a JUCE audio tool that reverses a sound and shapes the reverb tail leading into it, with a standalone app and a VST3 build.
 - Designed the extraction workflow behind [Extracting Google Earth data](/posts/google-earth-data/): RenderDoc capture → Blender → usable mesh.
 - Run the VPS that hosts these projects: Linux, systemd, Caddy, TLS, deploys.
 
-**[Role]** — **[Company]** · **[2024 — 2025]**
-
-- [What you owned, and the number that proves it got better.]
-
 ## Education
 
-**[Degree], [Institution]** · **[years]**
+**Faculty of Electronic Engineering, University of Niš** — Niš, Serbia · currently studying
+
+**"9th of May" Grammar School, Niš** — IT department · completed
 
 ## Skills
 
