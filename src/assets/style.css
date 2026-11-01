@@ -396,7 +396,7 @@ html[data-theme="light"] .lb{background:rgba(247,246,242,.96)}
   transition:transform .18s ease;cursor:zoom-in;
   user-select:none;-webkit-user-drag:none;touch-action:none;
 }
-.lb-img.dragging{cursor:grabbing;transition:none}
+.lb-img.dragging,.lb-img.zoomed{cursor:grab}`n.lb-img.dragging{cursor:grabbing;transition:none}
 .lb-tools{
   position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);
   display:flex;align-items:center;gap:.15rem;z-index:2;

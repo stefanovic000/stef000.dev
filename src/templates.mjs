@@ -166,11 +166,12 @@ ${footer()}
   var stage = lb.querySelector(".lb-stage");
   var count = lb.querySelector(".lb-count");
   var zLabel = lb.querySelector(".lb-zoom");
-  var idx = 0, last = null, z = 1, tx = 0, ty = 0, drag = null;
+  var idx = 0, last = null, z = 1, tx = 0, ty = 0, drag = null, moved = false;
 
   function apply() {
     img.style.transform = "translate3d(" + tx.toFixed(1) + "px," + ty.toFixed(1) + "px,0) scale(" + z + ")";
     zLabel.textContent = Math.round(z * 100) + "%";
+    img.classList.toggle("zoomed", z > 1);
   }
   function clampPan() {
     var r = stage.getBoundingClientRect();
@@ -236,7 +237,11 @@ ${footer()}
     });
   });
 
-  stage.addEventListener("dblclick", function () { setZoom(z > 1 ? 1 : 2.5); });
+  img.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (moved) { moved = false; return; }
+    setZoom(z > 1 ? 1 : 2.5);
+  });
   stage.addEventListener("wheel", function (e) {
     if (!lb.classList.contains("open")) return;
     e.preventDefault();
@@ -244,6 +249,7 @@ ${footer()}
   }, { passive: false });
 
   img.addEventListener("pointerdown", function (e) {
+    moved = false;
     if (z <= 1) return;
     e.preventDefault();
     drag = { x: e.clientX, y: e.clientY, tx: tx, ty: ty };
@@ -252,6 +258,7 @@ ${footer()}
   });
   img.addEventListener("pointermove", function (e) {
     if (!drag) return;
+    if (Math.abs(e.clientX - drag.x) > 5 || Math.abs(e.clientY - drag.y) > 5) moved = true;
     tx = drag.tx + (e.clientX - drag.x);
     ty = drag.ty + (e.clientY - drag.y);
     clampPan(); apply();
