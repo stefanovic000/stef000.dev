@@ -22,6 +22,7 @@ export default {
       tags: ["C++", "Qt", "WebRTC"],
       href: "https://github.com/stefanovic000/goodsharing",
       year: "2026",
+      image: "/assets/images/goodsharing.png",
       tint: ["#2f6572", "#0f242c"]
     },
     {
@@ -30,6 +31,7 @@ export default {
       tags: ["Node", "Caddy", "self-hosted"],
       href: "https://github.com/stefanovic000/stef000.dev",
       year: "2026",
+      image: "/assets/images/stef000-dev.png",
       tint: ["#8a5a2a", "#241608"]
     }
   ],

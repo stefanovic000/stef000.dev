@@ -291,7 +291,7 @@ const socials = () => `
 const projectCard = (p, i = 0) => `
 <article class="tile">
   <a class="tile-media" href="${p.href}" style="--t1:${p.tint?.[0] ?? "#2f6572"};--t2:${p.tint?.[1] ?? "#0f242c"}" aria-label="${esc(p.name)}">
-    <span class="tile-glyph">${String(i + 1).padStart(2, "0")}</span>
+    ${p.image ? `<img src="${p.image}" alt="${esc(p.name)} screenshot" loading="lazy">` : `<span class="tile-glyph">${String(i + 1).padStart(2, "0")}</span>`}
     <span class="tile-year">${esc(p.year)}</span>
   </a>
   <div class="tile-body">
