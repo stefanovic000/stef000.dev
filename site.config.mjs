@@ -4,13 +4,13 @@ export default {
   domain: "stef000.dev",
   role: "C# / .NET developer · C++ · desktop tooling",
   tagline: "I build desktop software, render things, and run my own infrastructure.",
-  email: "urosstefanovic000@gmail.com",
+  email: "uros.stefanovic000@gmail.com",
   github: "stefanovic000",
   location: "Serbia · CET",
 
   socials: [
     { label: "GitHub", href: "https://github.com/stefanovic000" },
-    { label: "Email", href: "mailto:urosstefanovic000@gmail.com" },
+    { label: "Email", href: "mailto:uros.stefanovic000@gmail.com" },
     { label: "RSS", href: "/feed.xml" }
   ],
 
