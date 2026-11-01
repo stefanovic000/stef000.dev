@@ -14,7 +14,7 @@ export default {
     { label: "RSS", href: "/feed.xml" }
   ],
 
-  // Shown on the home page and on /projects. First two get the larger treatment.
+  // Shown on the home page and on /projects.
   projects: [
     {
       name: "ReverseReverb",
@@ -23,7 +23,8 @@ export default {
       href: "https://github.com/stefanovic000/ReverseReverb",
       year: "2026",
       image: "/assets/images/reversereverb.png"
-    },    {
+    },
+    {
       name: "goodsharing",
       desc: "Windows screen sharing over a self-hosted LiveKit SFU: WGC capture, hardware H.264, E2EE, a Qt Quick UI and a measurement harness.",
       tags: ["C++", "Qt", "WebRTC"],
@@ -31,6 +32,14 @@ export default {
       year: "2026",
       image: "/assets/images/goodsharing.png",
       tint: ["#2f6572", "#0f242c"]
+    },
+    {
+      name: "node-chat",
+      desc: "A small real-time chat: pick a username, messages appear instantly, and you can drop images into the room. Express and Socket.IO, no database.",
+      tags: ["Node", "Express", "Socket.IO"],
+      href: "https://github.com/stefanovic000/node-chat",
+      year: "2026",
+      image: "/assets/images/node-chat.png"
     },
     {
       name: "stef000.dev",
