@@ -18,6 +18,24 @@ const icon = (name) => {  const paths = {
   return `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">${paths[name] ?? ""}</svg>`;
 };
 
+// abstract contour lines, generated once at build time
+const contours = (() => {
+  const rows = [];
+  for (let i = 0; i < 20; i++) {
+    const y = -30 + i * 54;
+    const amp = 9 + (i % 5) * 3.5;
+    const period = 360 + (i % 4) * 110;
+    const phase = i * 0.62;
+    let d = `M-260 ${y.toFixed(1)}`;
+    for (let x = -260; x <= 1900; x += 40) {
+      const yy = y + Math.sin((x / period) * Math.PI * 2 + phase) * amp;
+      d += `L${x} ${yy.toFixed(1)}`;
+    }
+    rows.push(`<path d="${d}"${i % 3 === 0 ? ' class="p-warm"' : ""}/>`);
+  }
+  return rows.join("");
+})();
+
 const nav = (active) => `<header class="nav">
   <a class="brand" href="/">stef000<span>.dev</span></a>
   <nav class="nav-links">
@@ -60,6 +78,10 @@ export const layout = ({ title, description, body, active }) => `<!doctype html>
 <meta property="og:type" content="website">
 </head>
 <body>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div class="pattern" aria-hidden="true"><div class="pattern-inner">
+  <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">${contours}</svg>
+</div></div>
 ${nav(active)}
 <main>
 ${body}
@@ -267,32 +289,80 @@ const socials = () => `
 </ul>`;
 
 const projectCard = (p, i = 0) => `
-<article class="project">
-  <header class="project-head">
+<article class="tile">
+  <a class="tile-media" href="${p.href}" style="--t1:${p.tint?.[0] ?? "#2f6572"};--t2:${p.tint?.[1] ?? "#0f242c"}" aria-label="${esc(p.name)}">
+    <span class="tile-glyph">${String(i + 1).padStart(2, "0")}</span>
+    <span class="tile-year">${esc(p.year)}</span>
+  </a>
+  <div class="tile-body">
     <h3><a href="${p.href}">${esc(p.name)}</a></h3>
-    <span class="year">${esc(p.year)}</span>
-  </header>
-  <p class="project-desc">${esc(p.desc)}</p>
-  <ul class="tags">${p.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
-  <a class="project-link" href="${p.href}">${p.href.includes("github.com") ? "source ↗" : "visit ↗"}</a>
+    <p>${esc(p.desc)}</p>
+    <ul class="tags">${p.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+  </div>
 </article>`;
+
+const PORTRAIT_SVG = `<svg viewBox="0 0 400 400" role="img">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#162a38"/>
+            <stop offset=".42" stop-color="#3c3f56"/>
+            <stop offset=".66" stop-color="#9a5c58"/>
+            <stop offset=".84" stop-color="#e0905c"/>
+            <stop offset="1" stop-color="#f4bd7c"/>
+          </linearGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2f6572"/>
+            <stop offset="1" stop-color="#0f242c"/>
+          </linearGradient>
+          <radialGradient id="sunGlow">
+            <stop offset="0" stop-color="#ffd9a0" stop-opacity=".85"/>
+            <stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="400" height="400" fill="url(#sky)"/>
+        <circle cx="200" cy="214" r="120" fill="url(#sunGlow)"/>
+        <circle cx="200" cy="214" r="32" fill="#ffe7bd"/>
+        <path d="M0 268 L58 244 L104 258 L152 238 L196 262 L246 240 L292 258 L344 242 L400 260 L400 276 L0 276 Z" fill="#162b34" opacity=".95"/>
+        <rect y="270" width="400" height="130" fill="url(#sea)"/>
+        <g fill="#ffd9a0" opacity=".32">
+          <rect x="186" y="284" width="28" height="2.5" rx="1.2"/>
+          <rect x="191" y="297" width="18" height="2.5" rx="1.2"/>
+          <rect x="195" y="310" width="11" height="2.5" rx="1.2"/>
+        </g>
+        <g stroke="#4f8d99" stroke-opacity=".34" fill="none" stroke-width="2">
+          <path d="M0 304 q44 -7 88 0 t88 0 t88 0 t88 0 t88 0"/>
+          <path d="M0 336 q44 -6 88 0 t88 0 t88 0 t88 0 t88 0"/>
+          <path d="M0 368 q44 -6 88 0 t88 0 t88 0 t88 0 t88 0"/>
+        </g>
+        <path d="M74 140 q8 -8 16 0 q8 -8 16 0" stroke="#0f2029" stroke-opacity=".7" fill="none" stroke-width="2"/>
+        <path d="M276 124 q6 -6 12 0 q6 -6 12 0" stroke="#0f2029" stroke-opacity=".55" fill="none" stroke-width="2"/>
+      </svg>`;
+
+const portraitArt = () =>
+  site.portrait
+    ? `<img class="portrait-img" src="${site.portrait}" alt="${esc(site.name)}">`
+    : PORTRAIT_SVG;
 
 export const home = () => `
 <section class="hero">
-  <div class="hero-wrap${site.portrait ? "" : " hero-wrap--solo"}">
-    <div class="hero-copy">
-      <p class="avail"><span class="dot"></span>${esc(site.available)}</p>
-      <h1>${esc(site.name)}</h1>
-      <p class="role">${esc(site.role)}</p>
-      <p class="tagline">${esc(site.tagline)}</p>
-      <div class="hero-actions">
-        <a class="btn btn-solid" href="/projects/">See the work</a>
-        <a class="btn btn-ghost" href="/cv/">Read the CV</a>
-      </div>
-      ${socials()}
-    </div>
-    ${site.portrait ? `<div class="hero-photo"><img src="${site.portrait}" alt="${esc(site.name)}"></div>` : ""}
+  <div class="sea" aria-hidden="true">
+    <span class="glow g1"></span><span class="glow g2"></span><span class="horizon"></span>
   </div>
+  <div class="hero-inner">
+    <div class="portrait" aria-hidden="true">
+      ${portraitArt()}
+    </div>
+    <p class="avail"><span class="dot"></span>${esc(site.available)}</p>
+    <h1>${esc(site.name)}</h1>
+    <p class="role">${esc(site.role)}</p>
+    <p class="tagline">${esc(site.tagline)}</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="/projects/">See the work</a>
+      <a class="btn btn-ghost" href="/cv/">Read the CV</a>
+    </div>
+    ${socials()}
+  </div>
+  <span class="scroll-cue" aria-hidden="true">scroll</span>
 </section>
 
 <section class="section" id="what">
@@ -318,8 +388,15 @@ export const home = () => `
     <span class="label">Selected work</span>
     <a href="/projects/" class="more">All projects →</a>
   </div>
-  <div class="work-grid">${site.projects.map((p, i) => projectCard(p, i)).join("")}</div>
 </section>
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="set">${site.projects.map(projectCard).join("")}</div>
+    <div class="set" aria-hidden="true" inert>${site.projects.map(projectCard).join("")}</div>
+    <div class="set" aria-hidden="true" inert>${site.projects.map(projectCard).join("")}</div>
+    <div class="set" aria-hidden="true" inert>${site.projects.map(projectCard).join("")}</div>
+  </div>
+</div>
 
 ${
   site.experience.length
