@@ -68,7 +68,7 @@ export const layout = ({ title, description, body, active }) => `<!doctype html>
 <meta name="description" content="${esc(description ?? site.tagline)}">
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=${site.assetVersion}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="/feed.xml">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description ?? site.tagline)}">

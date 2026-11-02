@@ -159,6 +159,13 @@ const posts = fs
 
 /* ---------- build ---------- */
 
+// Cache-bust the stylesheet: assets are served immutable for a year, so the URL
+// must change whenever the file does, or browsers keep the old CSS.
+site.assetVersion = (await import("node:crypto")).createHash("sha1")
+  .update(fs.readFileSync(path.join(ROOT, "src", "assets", "style.css")))
+  .digest("hex")
+  .slice(0, 8);
+
 rmrf(OUT);
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -176,6 +183,7 @@ pages.push(write("404.html", T.layout({ title: "404", body: T.notFound() })));
 
 /* assets */
 copyDir(path.join(ROOT, "src", "assets"), path.join(OUT, "assets"));
+
 copyDir(path.join(CONTENT, "images"), path.join(OUT, "assets", "images"));
 fs.writeFileSync(
   path.join(OUT, "assets", "favicon.svg"),
