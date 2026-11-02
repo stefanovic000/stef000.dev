@@ -277,6 +277,69 @@ ${footer()}
   img.addEventListener("pointerup", endDrag);
   img.addEventListener("pointercancel", endDrag);
 
+  var pinch = null;
+
+  function offsetFromCentre(cx, cy) {
+    var r = stage.getBoundingClientRect();
+    return { x: cx - (r.left + r.width / 2), y: cy - (r.top + r.height / 2) };
+  }
+
+  function pinchStart(touches) {
+    var a = touches[0], b = touches[1];
+    var midX = (a.clientX + b.clientX) / 2;
+    var midY = (a.clientY + b.clientY) / 2;
+    var off = offsetFromCentre(midX, midY);
+    pinch = {
+      dist: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1,
+      zoom: z,
+      ix: (off.x - tx) / z,
+      iy: (off.y - ty) / z
+    };
+    drag = null;
+    moved = true;
+  }
+
+  function pinchMove(touches) {
+    if (!pinch) return;
+    var a = touches[0], b = touches[1];
+    var midX = (a.clientX + b.clientX) / 2;
+    var midY = (a.clientY + b.clientY) / 2;
+    var dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1;
+    var off = offsetFromCentre(midX, midY);
+    z = Math.max(1, Math.min(4, pinch.zoom * (dist / pinch.dist)));
+    tx = off.x - pinch.ix * z;
+    ty = off.y - pinch.iy * z;
+    clampPan();
+    apply();
+  }
+
+  stage.addEventListener("touchstart", function (e) {
+    if (!lb.classList.contains("open")) return;
+    if (e.touches.length === 2) { e.preventDefault(); pinchStart(e.touches); }
+  }, { passive: false });
+
+  stage.addEventListener("touchmove", function (e) {
+    if (!lb.classList.contains("open")) return;
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      pinchMove(e.touches);
+    } else if (pinch) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  stage.addEventListener("touchend", function (e) {
+    if (e.touches.length < 2) pinch = null;
+  });
+  stage.addEventListener("touchcancel", function () { pinch = null; });
+
+  document.addEventListener("gesturestart", function (e) {
+    if (lb.classList.contains("open")) e.preventDefault();
+  });
+
+  img.addEventListener("pointerdown", function (e) {
+    if (pinch) { e.preventDefault(); return; }
+  }, true);
   document.addEventListener("keydown", function (e) {
     if (!lb.classList.contains("open")) return;
     if (e.key === "Escape") { e.preventDefault(); hide(); }
