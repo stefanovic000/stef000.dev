@@ -611,7 +611,6 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
   }
   .marquee::-webkit-scrollbar{display:none}
   .marquee-track{animation:none;will-change:auto}
-  .marquee .set[aria-hidden="true"]{display:none}
   .marquee .tile{flex:0 0 78vw}
 }
 .lb,.lb-stage{touch-action:none}

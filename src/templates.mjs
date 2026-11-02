@@ -134,6 +134,49 @@ ${footer()}
 </script>
 <script>
 (function () {
+  // Phone: drift the project rail slowly, but let a finger take over.
+  var rail = document.querySelector(".marquee");
+  if (!rail) return;
+  if (!window.matchMedia("(max-width: 960px)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var track = rail.querySelector(".marquee-track");
+  var sets = rail.querySelectorAll(".set");
+  if (!track || sets.length < 2) return;
+
+  var setWidth = 0;
+  function measure() { setWidth = track.scrollWidth / sets.length; }
+  measure();
+  var pos = rail.scrollLeft;
+  window.addEventListener("resize", measure, { passive: true });
+
+  var paused = false;
+  var resumeAt = 0;
+  function hold() { paused = true; }
+  function release() { paused = false; resumeAt = performance.now() + 2500; }
+
+  rail.addEventListener("touchstart", hold, { passive: true });
+  rail.addEventListener("touchend", release, { passive: true });
+  rail.addEventListener("touchcancel", release, { passive: true });
+
+  var last = performance.now();
+  function tick(now) {
+    var dt = Math.min(64, now - last);
+    last = now;
+    if (!paused && now > resumeAt && setWidth > 0) {
+      pos += 0.02 * dt;
+      if (pos >= setWidth) pos -= setWidth;
+      rail.scrollLeft = pos;
+    } else {
+      pos = rail.scrollLeft;
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+<script>
+(function () {
   if (!window.matchMedia("(pointer:fine)").matches) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var layers = [
