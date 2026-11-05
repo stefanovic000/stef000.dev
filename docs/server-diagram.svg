@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" font-family="Segoe UI, Inter, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b8f96"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e9b978"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6ec8d2"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="#0f1113"/>
+
+  <text x="48" y="56" fill="#f2f2f3" font-size="26" font-weight="600">stef000.dev</text>
+  <text x="196" y="56" fill="#8b8f96" font-size="18">— how the server is wired</text>
+  <text x="48" y="84" fill="#6d7178" font-size="14">Oracle Cloud · Ubuntu 24.04 · ARM · 2 vCPU / 11 GB / 45 GB disk</text>
+
+  <!-- Internet -->
+  <rect x="40" y="120" width="300" height="500" rx="14" fill="#171a1e" stroke="#2b2f36"/>
+  <text x="64" y="152" fill="#8b8f96" font-size="12" letter-spacing="2">INTERNET</text>
+
+  <rect x="64" y="176" width="252" height="76" rx="10" fill="#1d2126" stroke="#2b2f36"/>
+  <text x="84" y="206" fill="#c9cbd0" font-size="16">Visitors</text>
+  <text x="84" y="230" fill="#7c8087" font-size="13">browsers on any device</text>
+
+  <rect x="64" y="268" width="252" height="76" rx="10" fill="#1d2126" stroke="#2b2f36"/>
+  <text x="84" y="298" fill="#c9cbd0" font-size="16">Friends</text>
+  <text x="84" y="322" fill="#7c8087" font-size="13">share links · uploads</text>
+
+  <rect x="64" y="360" width="252" height="76" rx="10" fill="#1d2126" stroke="#2b2f36"/>
+  <text x="84" y="390" fill="#c9cbd0" font-size="16">Minecraft players</text>
+  <text x="84" y="414" fill="#7c8087" font-size="13">java client · port 25565</text>
+
+  <rect x="64" y="452" width="252" height="76" rx="10" fill="#1d2126" stroke="#2b2f36"/>
+  <text x="84" y="482" fill="#c9cbd0" font-size="16">Video calls</text>
+  <text x="84" y="506" fill="#7c8087" font-size="13">LiveKit participants</text>
+
+  <!-- Cloudflare -->
+  <rect x="390" y="120" width="300" height="500" rx="14" fill="#171a1e" stroke="#2b2f36"/>
+  <text x="414" y="152" fill="#8b8f96" font-size="12" letter-spacing="2">CLOUDFLARE</text>
+  <text x="414" y="184" fill="#e9b978" font-size="17">DNS zone stef000.dev</text>
+
+  <text x="414" y="222" fill="#7c8087" font-size="12" letter-spacing="1">A RECORDS</text>
+  <text x="414" y="248" fill="#c9cbd0" font-size="14" font-family="Consolas, monospace">stef000.dev   → 132.226.207.140</text>
+  <text x="414" y="272" fill="#c9cbd0" font-size="14" font-family="Consolas, monospace">files.        → same IP</text>
+  <text x="414" y="296" fill="#c9cbd0" font-size="14" font-family="Consolas, monospace">mc.           → same IP</text>
+  <text x="414" y="320" fill="#6d7178" font-size="14" font-family="Consolas, monospace">www.          → missing</text>
+
+  <text x="414" y="368" fill="#7c8087" font-size="12" letter-spacing="1">EMAIL</text>
+  <text x="414" y="394" fill="#c9cbd0" font-size="14">MX → Cloudflare Email Routing</text>
+  <text x="414" y="416" fill="#7c8087" font-size="13">uros@stef000.dev → Gmail</text>
+  <text x="414" y="440" fill="#7c8087" font-size="13">sending: Gmail → MailerSend SMTP</text>
+
+  <text x="414" y="486" fill="#7c8087" font-size="12" letter-spacing="1">TLS</text>
+  <text x="414" y="510" fill="#7c8087" font-size="13">certificates issued per hostname</text>
+  <text x="414" y="532" fill="#7c8087" font-size="13">(HTTP-01, auto-renewed)</text>
+
+  <!-- DNS arrow -->
+  <line x1="340" y1="250" x2="386" y2="250" stroke="#8b8f96" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="690" y1="250" x2="742" y2="250" stroke="#e9b978" stroke-width="2.5" marker-end="url(#arrowAccent)"/>
+  <text x="700" y="236" fill="#e9b978" font-size="12" font-family="Consolas, monospace">one IP</text>
+
+  <!-- VPS -->
+  <rect x="740" y="120" width="820" height="800" rx="16" fill="#14171a" stroke="#343942" stroke-dasharray="6 5"/>
+  <text x="770" y="152" fill="#8b8f96" font-size="12" letter-spacing="2">VPS · 132.226.207.140</text>
+
+  <!-- Caddy -->
+  <rect x="780" y="190" width="300" height="120" rx="12" fill="#1d2126" stroke="#6ec8d2"/>
+  <text x="802" y="222" fill="#6ec8d2" font-size="17" font-weight="600">Caddy</text>
+  <text x="802" y="248" fill="#c9cbd0" font-size="14">listens :80 / :443</text>
+  <text x="802" y="270" fill="#7c8087" font-size="13">TLS · hostname routing · gzip</text>
+  <text x="802" y="292" fill="#7c8087" font-size="13">static file server + reverse proxy</text>
+
+  <!-- Static -->
+  <rect x="1130" y="160" width="390" height="120" rx="12" fill="#1d2126" stroke="#2b2f36"/>
+  <text x="1152" y="192" fill="#f2f2f3" font-size="17">Static site</text>
+  <text x="1152" y="218" fill="#7c8087" font-size="13">stef000.dev · www → 301</text>
+  <text x="1152" y="244" fill="#c9cbd0" font-size="12" font-family="Consolas, monospace">/home/ubuntu/stef000website</text>
+
+  <!-- FileBrowser -->
+  <rect x="1130" y="300" width="390" height="150" rx="12" fill="#1d2126" stroke="#2b2f36"/>
+  <text x="1152" y="332" fill="#f2f2f3" font-size="17">FileBrowser Quantum</text>
+  <text x="1152" y="358" fill="#7c8087" font-size="13">files.stef000.dev · reverse proxy</text>
+  <text x="1152" y="382" fill="#c9cbd0" font-size="12" font-family="Consolas, monospace">127.0.0.1:8081</text>
+  <text x="1152" y="408" fill="#c9cbd0" font-size="12" font-family="Consolas, monospace">/home/ubuntu/filebrowser/files</text>
+  <text x="1152" y="432" fill="#7c8087" font-size="12">systemd · sqlite · shares</text>
+
+  <!-- Caddy arrows -->
+  <path d="M 1080 230 L 1090 230 L 1090 220 L 1126 220" fill="none" stroke="#8b8f96" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 1080 270 L 1090 270 L 1090 375 L 1126 375" fill="none" stroke="#8b8f96" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Direct ports -->
+  <rect x="780" y="560" width="330" height="120" rx="12" fill="#1d2126" stroke="#2b2f36" stroke-dasharray="5 4"/>
+  <text x="802" y="592" fill="#f2f2f3" font-size="16">Minecraft (Paper)</text>
+  <text x="802" y="616" fill="#c9cbd0" font-size="13" font-family="Consolas, monospace">:25565 TCP</text>
+  <text x="802" y="640" fill="#7c8087" font-size="13">java · ~3.6 GB RAM</text>
+  <text x="802" y="662" fill="#7c8087" font-size="12">not behind Caddy</text>
+
+  <rect x="1130" y="560" width="390" height="120" rx="12" fill="#1d2126" stroke="#2b2f36" stroke-dasharray="5 4"/>
+  <text x="1152" y="592" fill="#f2f2f3" font-size="16">LiveKit SFU</text>
+  <text x="1152" y="616" fill="#c9cbd0" font-size="13" font-family="Consolas, monospace">:7880 TCP · :7881 UDP</text>
+  <text x="1152" y="640" fill="#7c8087" font-size="13">screen sharing backend</text>
+  <text x="1152" y="662" fill="#7c8087" font-size="12">not behind Caddy</text>
+
+  <!-- direct arrow -->
+  <path d="M 170 540 L 170 650 L 774 650" fill="none" stroke="#6ec8d2" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrowTeal)"/>
+  <text x="196" y="640" fill="#6ec8d2" font-size="12">raw TCP/UDP straight to the port — DNS only, no proxy</text>
+
+  <!-- GitHub -->
+  <rect x="390" y="700" width="300" height="130" rx="12" fill="#171a1e" stroke="#2b2f36"/>
+  <text x="414" y="732" fill="#8b8f96" font-size="12" letter-spacing="2">GITHUB</text>
+  <text x="414" y="760" fill="#c9cbd0" font-size="15">stefanovic000/stef000.dev</text>
+  <text x="414" y="786" fill="#7c8087" font-size="13">build → dist/ → tar + scp</text>
+  <text x="414" y="808" fill="#7c8087" font-size="13">source of truth for the site</text>
+
+  <path d="M 690 765 L 776 765" fill="none" stroke="#8b8f96" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="700" y="754" fill="#6d7178" font-size="12">deploy</text>
+
+  <!-- Files flow note -->
+  <text x="1152" y="520" fill="#6d7178" font-size="13">uploads and shares land in files/ — nothing is encrypted at rest</text>
+  <text x="1152" y="540" fill="#6d7178" font-size="13">share expiry closes the link, not the file</text>
+
+  <!-- Ports note -->
+  <text x="780" y="866" fill="#6d7178" font-size="13">open in iptables + OCI: 22, 80, 443, 25565, 7880, 7881</text>
+  <text x="780" y="888" fill="#6d7178" font-size="13">8081 stays on loopback</text>
+</svg>

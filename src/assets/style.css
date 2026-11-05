@@ -274,7 +274,7 @@ html[data-theme="light"] .socials a:hover{background:#b0682a;color:#fffaf3;borde
 .more{font:500 11.5px var(--mono);color:var(--link);text-decoration:none}
 .more:hover{text-decoration:underline}
 
-.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6rem}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2.2rem 2rem}
 .cap h3{font-size:1.02rem;color:var(--head);margin-bottom:.55rem}
 .cap p{font-size:.92rem;line-height:1.7;color:var(--text-soft)}
 .skills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:2.4rem;padding:0;list-style:none}
@@ -284,7 +284,7 @@ html[data-theme="light"] .socials a:hover{background:#b0682a;color:#fffaf3;borde
 }
 
 /* ---------- project tiles ---------- */
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.8rem 1.2rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.8rem 1.2rem}
 .tile{display:flex;flex-direction:column;gap:.8rem;min-width:0}
 .tile-media{
   position:relative;display:block;aspect-ratio:16/10;border-radius:12px;overflow:hidden;
@@ -306,6 +306,13 @@ html[data-theme="light"] .socials a:hover{background:#b0682a;color:#fffaf3;borde
   background:radial-gradient(120% 90% at 82% 0%,rgba(255,255,255,.20),transparent 62%);
 }
 .tile:hover .tile-media{transform:translateY(-3px);border-color:var(--hover-border);box-shadow:0 18px 40px -22px rgba(0,0,0,.8)}
+.tile-cta .tile-media{background:none;border:1px dashed var(--border)}
+.tile-cta .tile-media::before,.tile-cta .tile-media::after{display:none}
+.tile-cta .tile-media .tile-glyph{color:var(--text-soft);font-size:1.7rem}
+.tile-cta:hover .tile-media{border-color:var(--link);transform:none;box-shadow:none}
+.tile-cta .tile-media{display:grid;place-items:center}
+.tile-cta .tile-media .tile-glyph{position:static;font-size:2rem}
+.tile-cta .tile-body p{color:var(--text-soft)}
 .tile-glyph{
   position:absolute;left:.85rem;bottom:.5rem;z-index:1;
   font:700 2.2rem/1 var(--mono);letter-spacing:-.06em;color:rgba(255,255,255,.16);

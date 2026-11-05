@@ -34,6 +34,14 @@ export default {
       tint: ["#2f6572", "#0f242c"]
     },
     {
+      name: "WeAscend",
+      desc: "A quest-based progress system: append-only XP ledger, ranks, boss quests and an AI advisor. Next.js PWA and Expo client on a Cloudflare Worker API.",
+      tags: ["TypeScript", "Next.js", "Cloudflare"],
+      href: "https://github.com/stefanovic000/WeAscend",
+      year: "2026",
+      image: "/assets/images/weascend.jpg"
+    },
+    {
       name: "node-chat",
       desc: "A small real-time chat: pick a username, messages appear instantly, and you can drop images into the room. Express and Socket.IO, no database.",
       tags: ["Node", "Express", "Socket.IO"],
@@ -70,10 +78,14 @@ export default {
     {
       title: "Systems & infra",
       text: "Linux boxes, TLS, reverse proxies, deploy pipelines. I run the servers my own projects live on."
+    },
+    {
+      title: "Web & edge",
+      text: "TypeScript and Next.js when a tool needs to run in a browser — PWAs, edge APIs on Cloudflare Workers, Expo for the phone."
     }
   ],
 
-  skills: ["C#", ".NET Framework", "WinForms", "C++", "JUCE", "Qt", "WebRTC", "Direct3D", "Blender", "RenderDoc", "Linux", "Node", "Git"],
+  skills: ["C#", ".NET Framework", "WinForms", "C++", "JUCE", "Qt", "WebRTC", "Direct3D", "Blender", "RenderDoc", "TypeScript", "Next.js", "Node", "Express", "Socket.IO", "Linux", "Caddy", "Git"],
 
   // Add entries here and they appear on both the home page and /cv.
   // { role: "", company: "", period: "", note: "" }

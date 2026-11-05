@@ -421,6 +421,17 @@ const projectCard = (p, i = 0) => `
   </div>
 </article>`;
 
+const githubCard = `
+<article class="tile tile-cta">
+  <a class="tile-media" href="https://github.com/${site.github}" target="_blank" rel="noopener" aria-label="All repositories on GitHub">
+    <span class="tile-glyph">→</span>
+  </a>
+  <div class="tile-body">
+    <h3><a href="https://github.com/${site.github}" target="_blank" rel="noopener">Everything else</a></h3>
+    <p>More repos, experiments and half-finished ideas on GitHub.</p>
+  </div>
+</article>`;
+
 const PORTRAIT_SVG = `<svg viewBox="0 0 400 400" role="img">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
@@ -592,7 +603,7 @@ export const projectsPage = (projects) => `
   <p class="page-sub">Tools, experiments and the odd piece of infrastructure.</p>
 </section>
 <section class="section tight">
-  <div class="tiles">${projects.map((p, i) => projectCard(p, i)).join("")}</div>
+  <div class="tiles">${projects.map((p, i) => projectCard(p, i)).join("")}${githubCard}</div>
 </section>`;
 
 export const cvPage = (html) => `
