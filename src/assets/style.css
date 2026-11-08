@@ -710,16 +710,13 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
 }
 .scroll-hint:hover{opacity:.85}
 .scroll-hint i{
-  display:block;width:1px;height:22px;
-  background:linear-gradient(180deg,rgba(233,185,120,.85),rgba(233,185,120,0));
-  animation:hint-drop 2.6s cubic-bezier(.37,0,.63,1) infinite;
-  transform-origin:top center;
+  display:block;width:1px;height:20px;border-radius:1px;
+  background:rgba(233,185,120,.7);
+  animation:hint-pulse 2.8s ease-in-out infinite;
 }
-@keyframes hint-drop{
-  0%{transform:scaleY(.2);opacity:0}
-  40%{transform:scaleY(1);opacity:1}
-  70%{transform:scaleY(1);opacity:.3}
-  100%{transform:scaleY(.2);opacity:0}
+@keyframes hint-pulse{
+  0%,100%{opacity:.28;transform:translateY(0)}
+  50%{opacity:.85;transform:translateY(3px)}
 }
-@media (max-width:560px){.scroll-hint{bottom:1rem;opacity:.3}.scroll-hint i{height:15px}}
-@media (prefers-reduced-motion:reduce){.scroll-hint i{animation:none;opacity:.5}}
+@media (max-width:560px){.scroll-hint{bottom:1rem;opacity:.5}.scroll-hint i{height:16px}}
+@media (prefers-reduced-motion:reduce){.scroll-hint i{animation:none;opacity:.55}}
