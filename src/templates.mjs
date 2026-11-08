@@ -58,7 +58,7 @@ const footer = () => `
   </div>
 </footer>`;
 
-export const layout = ({ title, description, body, active }) => `<!doctype html>
+export const layout = ({ title, description, body, active, langSwitch = false }) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -97,6 +97,25 @@ ${footer()}
   </div>
   <span class="lb-count"></span>
 </div>
+${langSwitch ? `<button class="lt" type="button" data-lang="en" aria-pressed="false" aria-label="Prikaži na srpskom" title="Jezik / Language">
+  <svg class="lt-flag" data-flag="en" viewBox="0 0 22 22" aria-hidden="true">
+    <rect width="22" height="22" fill="#012169"/>
+    <path d="M0 0 L22 22 M22 0 L0 22" stroke="#fff" stroke-width="4"/>
+    <path d="M0 0 L22 22 M22 0 L0 22" stroke="#c8102e" stroke-width="1.7"/>
+    <path d="M11 0 V22 M0 11 H22" stroke="#fff" stroke-width="5.2"/>
+    <path d="M11 0 V22 M0 11 H22" stroke="#c8102e" stroke-width="2.8"/>
+  </svg>
+  <svg class="lt-flag" data-flag="sr" viewBox="0 0 22 22" aria-hidden="true">
+    <rect width="22" height="22" fill="#c6363c"/>
+    <rect y="7.33" width="22" height="7.33" fill="#0c4076"/>
+    <rect y="14.66" width="22" height="7.34" fill="#f4f4f1"/>
+  </svg>
+</button>
+<aside class="lp-prompt" id="lp-prompt" role="dialog" aria-live="polite" aria-label="Jezik">
+  <button class="lp-prompt-x" type="button" aria-label="Zatvori">×</button>
+  <p>Govoriš srpski?</p>
+  <button class="lp-prompt-btn" type="button">Prikaži na srpskom</button>
+</aside>` : ""}
 <button class="tt" type="button" aria-pressed="false" aria-label="Switch to light theme" title="Toggle theme">
   <svg class="tt-icon" viewBox="0 0 24 24" aria-hidden="true">
     <g class="tt-rays">
@@ -113,6 +132,51 @@ ${footer()}
     <circle class="tt-cut" cx="15.2" cy="8.4" r="5.6"/>
   </svg>
 </button>
+<script>
+(function () {
+  var b = document.querySelector(".lt");
+  if (!b) return;
+  var d = document.documentElement;
+  function apply(lang) {
+    var sr = lang === "sr";
+    var nodes = document.querySelectorAll("[data-en]");
+    for (var i = 0; i < nodes.length; i++) {
+      var v = nodes[i].getAttribute(sr ? "data-sr" : "data-en");
+      if (v) nodes[i].textContent = v;
+    }
+    d.lang = sr ? "sr" : "en";
+    b.setAttribute("data-lang", sr ? "sr" : "en");
+    b.setAttribute("aria-pressed", sr ? "true" : "false");
+    b.setAttribute("aria-label", sr ? "Prikaži na engleskom" : "Prikaži na srpskom");
+  }
+  var lang = "en";
+  try { lang = localStorage.getItem("lang") === "sr" ? "sr" : "en"; } catch (e) {}
+  apply(lang);
+  b.addEventListener("click", function () {
+    lang = lang === "sr" ? "en" : "sr";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    apply(lang);
+  });
+})();
+</script>
+<script>
+(function () {
+  var box = document.getElementById("lp-prompt");
+  var flag = document.querySelector(".lt");
+  if (!box || !flag) return;
+  var KEY = "langPrompt", dismissed = null;
+  try { dismissed = localStorage.getItem(KEY); } catch (e) {}
+  function hide() {
+    box.classList.remove("on");
+    try { localStorage.setItem(KEY, "off"); } catch (e) {}
+    window.setTimeout(function () { box.remove(); }, 300);
+  }
+  if (dismissed === "off" || flag.getAttribute("data-lang") === "sr") return;
+  window.setTimeout(function () { box.classList.add("on"); }, 1600);
+  box.querySelector(".lp-prompt-btn").addEventListener("click", function () { hide(); flag.click(); });
+  box.querySelector(".lp-prompt-x").addEventListener("click", hide);
+})();
+</script>
 <script>
 (function () {
   var b = document.querySelector(".tt");
@@ -560,6 +624,71 @@ ${
   </div>
 </section>`;
 
+export const homeLab = () => `
+<section class="hero lab-hero">
+  <div class="sea" aria-hidden="true">
+    <span class="glow g1"></span><span class="glow g2"></span><span class="horizon"></span>
+  </div>
+  <div class="hero-inner">
+    <div class="portrait" aria-hidden="true">
+      ${portraitArt()}
+    </div>
+    <p class="avail"><span class="dot"></span><span data-en="Open to work — websites · apps · software" data-sr="Slobodan za rad — sajtovi · aplikacije · softver">Open to work — websites · apps · software</span></p>
+    <h1>${esc(site.name)}</h1>
+    <p class="role" data-en="I build websites, apps, and software." data-sr="Pravim sajtove, aplikacije i softver.">I build websites, apps, and software.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="mailto:${site.email}?subject=${encodeURIComponent("Treba mi sajt / aplikacija")}" data-en="Tell me what you need" data-sr="Reci mi šta ti treba">Tell me what you need</a>
+      <a class="btn btn-ghost" href="/projects/" data-en="See the work" data-sr="Pogledaj radove">See the work</a>
+      <a class="btn btn-ghost" href="/cv/" data-en="Read the CV" data-sr="Pogledaj CV">Read the CV</a>
+    </div>
+    ${socials()}
+  </div>
+</section>
+
+<section class="section" id="what">
+  <div class="section-head">
+    <span class="label" data-en="What I do" data-sr="Šta radim">What I do</span>
+  </div>
+  <div class="caps">
+    <div class="cap">
+      <h3 data-en="Websites" data-sr="Sajtovi">Websites</h3>
+      <p data-en="A site that loads fast, works on a phone, and sits on your own domain with HTTPS. Hosting handled, so it stays online after I hand it over." data-sr="Sajt koji se brzo učitava, radi na telefonu i stoji na tvom domenu sa HTTPS-om. Hosting je sređen, pa ostaje online i kad ga predam.">A site that loads fast, works on a phone, and sits on your own domain with HTTPS. Hosting handled, so it stays online after I hand it over.</p>
+    </div>
+    <div class="cap">
+      <h3 data-en="Apps" data-sr="Aplikacije">Apps</h3>
+      <p data-en="Desktop programs and phone apps that do one job properly — for Windows, macOS or Android, whichever the job needs." data-sr="Programi za računar i aplikacije za telefon koji rade jedan posao kako treba — za Windows, macOS ili Android, kako god zadatak traži.">Desktop programs and phone apps that do one job properly — for Windows, macOS or Android, whichever the job needs.</p>
+    </div>
+    <div class="cap">
+      <h3 data-en="Something custom" data-sr="Nešto po meri">Something custom</h3>
+      <p data-en="Servers, automation, data pulled out of programs that never meant to give it up — the job nobody else wanted." data-sr="Serveri, automatizacija, podaci izvučeni iz programa koji ih nisu hteli dati — posao koji niko drugi nije hteo.">Servers, automation, data pulled out of programs that never meant to give it up — the job nobody else wanted.</p>
+    </div>
+  </div>
+  <ul class="skills">${site.skills.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+</section>
+
+<section class="section" id="work">
+  <div class="section-head">
+    <span class="label" data-en="Selected work" data-sr="Izabrani radovi">Selected work</span>
+    <a href="/projects/" class="more" data-en="All projects →" data-sr="Svi projekti →">All projects →</a>
+  </div>
+</section>
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="set">${site.projects.map(projectCard).join("")}</div>
+    <div class="set" aria-hidden="true" inert>${site.projects.map(projectCard).join("")}</div>
+    <div class="set" aria-hidden="true" inert>${site.projects.map(projectCard).join("")}</div>
+    <div class="set" aria-hidden="true" inert>${site.projects.map(projectCard).join("")}</div>
+  </div>
+</div>
+
+<section class="cta">
+  <div class="cta-inner">
+    <span class="label" data-en="Open to work" data-sr="Slobodan za rad">Open to work</span>
+    <h2 data-en="Need something built?" data-sr="Treba nešto da se napravi?">Need something built?</h2>
+    <a class="cta-mail" href="mailto:${site.email}?subject=${encodeURIComponent("Project — what I need built")}">${esc(site.email)} <span aria-hidden="true">↗</span></a>
+    <p class="cta-meta" data-en="Sites, apps, small jobs — I reply the same day." data-sr="Sajtovi, aplikacije, sitni poslovi — odgovaram isti dan.">Sites, apps, small jobs — I reply the same day.</p>
+  </div>
+</section>`;
 export const postsIndex = (posts) => `
 <section class="page-head">
   <span class="label">Writing</span>

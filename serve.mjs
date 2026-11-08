@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "dist");
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), process.env.SERVE_ROOT ?? "dist");
 const PORT = Number(process.env.PORT ?? 8080);
 const TYPES = {
   ".html": "text/html; charset=utf-8",

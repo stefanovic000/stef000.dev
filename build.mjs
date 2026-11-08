@@ -9,7 +9,9 @@ import site from "./site.config.mjs";
 import * as T from "./src/templates.mjs";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
-const OUT = path.join(ROOT, "dist");
+// --lab builds the alternate front page into dist-lab/ for local review only.
+const LAB = process.argv.includes("--lab");
+const OUT = path.join(ROOT, LAB ? "dist-lab" : "dist");
 const CONTENT = path.join(ROOT, "content");
 
 // HERO=split gives the two-tone variant; default is the single dark hero.
@@ -170,7 +172,13 @@ rmrf(OUT);
 fs.mkdirSync(OUT, { recursive: true });
 
 const pages = [];
-pages.push(write("index.html", T.layout({ title: `${site.name} — ${site.role}`, description: site.tagline, body: T.home(posts), active: "home" })));
+pages.push(write("index.html", T.layout({
+  title: `${site.domain} — websites, apps, software`,
+  description: "Websites, apps and the software in between, built by one person. Tell me what you need.",
+  body: T.homeLab(),
+  active: "home",
+  langSwitch: true
+})));
 pages.push(write("posts/index.html", T.layout({ title: `Writing — ${site.name}`, description: "Problems worth writing down.", body: T.postsIndex(posts), active: "writing" })));
 pages.push(write("projects/index.html", T.layout({ title: `Projects — ${site.name}`, description: "Things I build.", body: T.projectsPage(site.projects), active: "projects" })));
 pages.push(write("cv/index.html", T.layout({ title: `CV — ${site.name}`, description: site.role, body: T.cvPage(md.render(preprocessPrompts(fs.readFileSync(path.join(CONTENT, "cv.md"), "utf8")))), active: "cv" })));
@@ -222,4 +230,4 @@ ${urls.map((u) => `<url><loc>https://${site.domain}${u}</loc></url>`).join("\n")
 );
 write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /studio/\n\nSitemap: https://${site.domain}/sitemap.xml\n`);
 
-console.log(`built ${pages.length + 4} files → dist/  (${posts.length} post${posts.length === 1 ? "" : "s"})`);
+console.log(`built ${pages.length + 4} files → ${LAB ? "dist-lab/" : "dist/"}  (${posts.length} post${posts.length === 1 ? "" : "s"})`);
