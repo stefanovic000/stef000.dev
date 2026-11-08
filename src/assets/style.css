@@ -667,8 +667,8 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
 .lp-prompt .lp-prompt-x:hover{color:var(--head)}
 
 @media (max-width:560px){
-  .lab-hero .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;width:100%}
-  .lab-hero .hero-actions .btn:last-child{grid-column:1 / -1}
+  .lab-hero .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem 1.5rem;width:100%}
+  .lab-hero .hero-actions .btn:first-child{flex:1 0 100%}
 }
 /* short screens: shrink the hero so the block fits the viewport */
 @media (max-height:860px){
@@ -680,4 +680,19 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
   .lab-hero .hero-actions{margin-top:1.4rem}
   .lab-hero .socials{margin-top:1.3rem}
   .lab-hero .socials a{width:34px;height:34px}
+}
+/* phones: one clear button, the other two become quiet links */
+@media (max-width:560px){
+  .lab-hero .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem 1.5rem;width:100%;margin-top:1.6rem}
+  .lab-hero .hero-actions .btn:first-child{flex:1 0 100%;width:100%}
+  .lab-hero .hero-actions .btn:not(:first-child){
+    background:none;border:0;border-radius:0;padding:0;justify-self:start;
+    font:500 .74rem/1.2 var(--mono);color:var(--text-soft);
+    text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--border);
+  }
+  .lab-hero .hero-actions .btn:not(:first-child):hover{color:var(--link);border-color:var(--link)}
+}
+@media (max-width:560px){
+  .lt{right:calc(1rem + 42px + .5rem);bottom:1rem;width:42px;height:42px}
+  .lt .lt-flag{width:22px;height:22px}
 }
