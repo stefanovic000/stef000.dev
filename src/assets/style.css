@@ -672,7 +672,7 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
 }
 /* short screens: shrink the hero so the block fits the viewport */
 @media (max-height:860px){
-  .lab-hero{padding:5.2rem 2rem 2.6rem}
+  .lab-hero{padding:5.2rem 1.25rem 2.6rem}
   .lab-hero .portrait{width:clamp(120px,19vh,182px);margin-bottom:1.2rem}
   .lab-hero .avail{margin-bottom:1rem}
   .lab-hero h1{font-size:clamp(2.2rem,4.6vw,3.5rem)}
@@ -681,16 +681,23 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
   .lab-hero .socials{margin-top:1.3rem}
   .lab-hero .socials a{width:34px;height:34px}
 }
-/* phones: one clear button, the other two become quiet links */
+/* phones: three real buttons, stacked and evenly spaced */
 @media (max-width:560px){
-  .lab-hero .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem 1.5rem;width:100%;margin-top:1.6rem}
-  .lab-hero .hero-actions .btn:first-child{flex:1 0 100%;width:100%}
-  .lab-hero .hero-actions .btn:not(:first-child){
-    background:none;border:0;border-radius:0;padding:0;justify-self:start;
-    font:500 .74rem/1.2 var(--mono);color:var(--text-soft);
-    text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--border);
+  .lab-hero .hero-inner{width:100%}
+  .lab-hero .hero-actions{
+    display:flex;flex-direction:column;align-items:stretch;gap:.55rem;width:100%;
+    margin:1.5rem 0 0;padding:0;
   }
-  .lab-hero .hero-actions .btn:not(:first-child):hover{color:var(--link);border-color:var(--link)}
+  .lab-hero .hero-actions .btn{flex:0 0 auto}
+  .lab-hero .hero-actions .btn{
+    width:100%;justify-content:center;text-align:center;
+    padding:.85rem 1rem;font-size:12.5px;letter-spacing:.02em;
+  }
+  .lab-hero .avail{
+    font-size:9.5px;letter-spacing:.1em;padding:.32rem .6rem;gap:.4rem;
+    max-width:100%;
+  }
+  .lab-hero .socials{margin-top:1.5rem}
 }
 @media (max-width:560px){
   .lt{right:calc(1rem + 42px + .5rem);bottom:1rem;width:42px;height:42px}
