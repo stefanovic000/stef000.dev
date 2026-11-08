@@ -643,6 +643,7 @@ export const homeLab = () => `
     </div>
     ${socials()}
   </div>
+  <a class="scroll-hint" href="#what" aria-label="Scroll to content"><i aria-hidden="true"></i></a>
 </section>
 
 <section class="section" id="what">

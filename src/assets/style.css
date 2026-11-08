@@ -703,3 +703,23 @@ html[data-theme="light"] .tt-rays{opacity:1;transform:scale(1) rotate(0deg)}
   .lt{right:calc(1rem + 42px + .5rem);bottom:1rem;width:42px;height:42px}
   .lt .lt-flag{width:22px;height:22px}
 }
+/* scroll hint: the hero fills the screen, so say there is more below */
+.scroll-hint{
+  position:absolute;left:50%;bottom:1.5rem;transform:translateX(-50%);z-index:2;
+  display:block;text-decoration:none;opacity:.4;transition:opacity .3s ease;
+}
+.scroll-hint:hover{opacity:.85}
+.scroll-hint i{
+  display:block;width:1px;height:22px;
+  background:linear-gradient(180deg,rgba(233,185,120,.85),rgba(233,185,120,0));
+  animation:hint-drop 2.6s cubic-bezier(.37,0,.63,1) infinite;
+  transform-origin:top center;
+}
+@keyframes hint-drop{
+  0%{transform:scaleY(.2);opacity:0}
+  40%{transform:scaleY(1);opacity:1}
+  70%{transform:scaleY(1);opacity:.3}
+  100%{transform:scaleY(.2);opacity:0}
+}
+@media (max-width:560px){.scroll-hint{bottom:1rem;opacity:.3}.scroll-hint i{height:15px}}
+@media (prefers-reduced-motion:reduce){.scroll-hint i{animation:none;opacity:.5}}
