@@ -643,7 +643,9 @@ export const homeLab = () => `
     </div>
     ${socials()}
   </div>
-  <a class="scroll-hint" href="#what" aria-label="Scroll to content"><i aria-hidden="true"></i></a>
+  <a class="scroll-hint" href="#what" aria-label="Scroll to content">
+    <svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1.5 1.5 L7 7 L12.5 1.5"/></svg>
+  </a>
 </section>
 
 <section class="section" id="what">
