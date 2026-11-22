@@ -66,6 +66,18 @@ export const layout = ({ title, description, body, active, langSwitch = false })
 <script>(function(){var d=document.documentElement;try{var q=new URLSearchParams(location.search).get("theme");var t=q||localStorage.getItem("theme");d.dataset.theme=t==="light"?"light":"dark";}catch(e){d.dataset.theme="dark";}})();</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description ?? site.tagline)}">
+<script type="application/ld+json">${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Uroš Stefanović",
+  alternateName: site.name,
+  url: `https://${site.domain}/`,
+  email: `mailto:${site.email}`,
+  jobTitle: "Developer — websites, apps and software",
+  address: { "@type": "PostalAddress", addressLocality: "Niš", addressCountry: "RS" },
+  sameAs: [`https://github.com/${site.github}`],
+  knowsAbout: ["Web development", "C#", "C++", "TypeScript", "Linux"]
+})}</script>
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css?v=${site.assetVersion}">

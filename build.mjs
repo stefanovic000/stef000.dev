@@ -173,8 +173,8 @@ fs.mkdirSync(OUT, { recursive: true });
 
 const pages = [];
 pages.push(write("index.html", T.layout({
-  title: `${site.domain} — websites, apps, software`,
-  description: "Websites, apps and the software in between, built by one person. Tell me what you need.",
+  title: `Uroš Stefanović — websites, apps and software`,
+  description: "Uroš Stefanović builds websites, apps and the software behind them, and runs the server they live on. Niš, Serbia — available for work.",
   body: T.homeLab(),
   active: "home",
   langSwitch: true
