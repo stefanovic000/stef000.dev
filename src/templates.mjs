@@ -80,6 +80,7 @@ export const layout = ({ title, description, body, active, langSwitch = false })
 })}</script>
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/style.css?v=${site.assetVersion}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="/feed.xml">
 <meta property="og:title" content="${esc(title)}">
