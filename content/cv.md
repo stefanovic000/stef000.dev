@@ -11,7 +11,7 @@ I build websites, apps and the software behind them — mostly in C#, C++ and Ty
 - Built **ReverseReverb**, a JUCE audio tool that reverses a sound and shapes the reverb tail leading into it, with a standalone app and a VST3 build.
 - Built **node-chat**, a real-time chat on Express and Socket.IO: session-based usernames, server-sanitised messages, image sharing, and a smoke test that covers the socket protocol.
 - Run the VPS behind all of it: Linux, systemd, Caddy with automatic TLS, reverse proxies, firewall rules and repeatable deploys over SSH.
-- Run the domain's own mail and file services: a self-hosted file server with per-link passwords, expiry and download counting, plus SPF, DKIM and DMARC for the domain.
+- Run the domain's own mail: SPF, DKIM and DMARC configured and verified, so what I send authenticates instead of landing in spam.
 - Designed the extraction workflow behind [Extracting Google Earth data](/posts/google-earth-data/): RenderDoc capture → Blender → usable mesh.
 
 ## Education
