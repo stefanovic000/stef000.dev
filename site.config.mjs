@@ -2,7 +2,7 @@
 export default {
   name: "Uros Stefanovic",
   domain: "stef000.dev",
-  role: "C# / .NET developer · C++ · desktop tooling",
+  role: "Websites, apps and software · C# / .NET · C++",
   tagline: "I build desktop software, render things, and run my own infrastructure.",
   email: "uros@stef000.dev",
   github: "stefanovic000",
@@ -51,7 +51,7 @@ export default {
     },
     {
       name: "stef000.dev",
-      desc: "This site. Markdown in, static HTML out, served by Caddy on an Oracle ARM box with a small studio app for writing.",
+      desc: "This site. Markdown in, static HTML out — a small Node build, served by Caddy on an Oracle ARM box, deployed over SSH.",
       tags: ["Node", "Caddy", "self-hosted"],
       href: "https://github.com/stefanovic000/stef000.dev",
       year: "2026",
@@ -64,7 +64,7 @@ export default {
   about:
     "I build desktop software in C# and C++, mostly tools that touch graphics, capture and 3D data, and I run the machines that serve them. Most of what I know came from breaking something and having to fix it.",
 
-  available: "Open to work — C# / .NET · C++",
+  available: "Open to work — websites · apps · software",
 
   capabilities: [
     {
@@ -85,7 +85,7 @@ export default {
     }
   ],
 
-  skills: ["C#", ".NET Framework", "WinForms", "C++", "JUCE", "Qt", "WebRTC", "Direct3D", "Blender", "RenderDoc", "TypeScript", "Next.js", "Node", "Express", "Socket.IO", "Linux", "Caddy", "Git"],
+  skills: ["C#", ".NET Framework", "WinForms", "C++", "JUCE", "Qt", "WebRTC", "Direct3D", "Blender", "RenderDoc", "TypeScript", "Next.js", "Node", "Express", "Socket.IO", "Cloudflare Workers", "Linux", "Caddy", "Git"],
 
   // Add entries here and they appear on both the home page and /cv.
   // { role: "", company: "", period: "", note: "" }
