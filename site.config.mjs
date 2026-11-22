@@ -17,6 +17,14 @@ export default {
   // Shown on the home page and on /projects.
   projects: [
     {
+      name: "8ball",
+      desc: "Top-down 8-ball pool with a hand-written billiards physics engine — English, spin, cushions and a proper break.",
+      tags: ["TypeScript", "Canvas", "physics"],
+      href: "https://github.com/stefanovic000/8ball",
+      year: "2026",
+      image: "/assets/images/8ball.jpg"
+    },
+    {
       name: "ReverseReverb",
       desc: "Turns a sound into a reversed reverb lead-in. Drop a file, shape the tail, export a WAV or drag it into FL Studio.",
       tags: ["C++", "JUCE", "audio"],
@@ -48,6 +56,14 @@ export default {
       href: "https://github.com/stefanovic000/node-chat",
       year: "2026",
       image: "/assets/images/node-chat.png"
+    },
+    {
+      name: "Yugoslavian-War",
+      desc: "A side-view WW2 dogfight game for 2–4 players, with its own dedicated Ubuntu server — game loop, netcode and hosting.",
+      tags: ["Lua", "multiplayer", "game"],
+      href: "https://github.com/stefanovic000/Yugoslavian-War",
+      year: "2026",
+      image: "/assets/images/yugoslavian-war.jpg"
     },
     {
       name: "stef000.dev",
